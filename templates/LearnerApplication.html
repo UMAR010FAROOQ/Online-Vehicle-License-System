@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title%}| Track License {% endblock %}
+
+
+
+{% block contentBody %}
+
+
+<div class="space-bottom mt-5">
+    <div class="container">
+        <div class="row gx-0">
+            <div class="col-lg-12">
+                <div class="quote-form-box">
+                    <div class="woocommerce-form-login">
+                        <p class="form-text text-start">New Learner</p>
+                        <h3 class="form-title text-start"><span class="text-theme">License Application</span> </h3>
+                        <div class="table-responsive">
+                            <table class="table table-striped nowrap" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">CNIC</th>
+                                        <th scope="col">Full Name</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">PSID</th>
+                                        <th scope="col">Payment Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for application in applications %}
+                                    <tr>
+                                        <th scope="row">{{ forloop.counter }}</th>
+                                        <td>{{ application.cnic }}</td>
+                                        <td>{{ application.full_name }}</td>
+                                        <td>{{ application.gender }}</td>
+                                        <td>{{ application.psid }}</td>
+                                        <td>{{ application.pystatus|yesno:"Paid,Unpaid" }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+
+{% endblock contentBody %}

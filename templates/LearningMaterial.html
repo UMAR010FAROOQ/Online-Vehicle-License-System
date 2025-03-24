@@ -1,0 +1,307 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title%}| Learning Material {% endblock %}
+
+
+
+{% block contentBody %}
+        
+
+
+
+
+
+
+<div class="breadcumb-wrapper" data-bg-src="{% static 'img/bg/breadcumb-bg.jpg' %}">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Learning Material</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'core:HomePage' %}">Home</a></li>
+                <li>Learning Material</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<section class="space">
+    <div class="container">
+        <div class="row gy-4 justify-content-center">
+            {% for material in materials %}
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-box">
+                    <div class="line-icon"><img src="{{ material.icon.url }}" alt="icon"></div>
+                    <div class="media-body">
+                        <h3 class="box-title2">{{ material.title }}</h3>
+                        <p class="feature-box_text">{{ material.description }}</p>
+                        <a href="{{ material.file.url }}" target="_blank" class="line-btn">Open PDF<i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+zz
+<section class="overflow-hidden space-bottom" id="service-sec">
+    <div class="container">
+        <div class="title-area text-center"><span class="sub-title"><img src="{% static 'img/theme-img/title_shape_1.svg' %}"
+                    alt="shape">Tips & Tricks</span>
+            <h2 class="sec-title">Guide For Pratical Driving Test</h2>
+        </div>
+        <div class="row">
+            <div class="col-xl-3">
+                <div class="service-box-tab" data-asnavfor=".service-box-slide">
+                    <div class="tab-btn active">
+                        <div class="box-icon"><img src="{% static 'img/icon/service_box_1.svg' %}" alt="icon"></div>
+                        <h3 class="box-title">Inspection Of Vehicle</h3>
+                    </div>
+                    <div class="tab-btn">
+                        <div class="box-icon"><img src="{% static 'img/icon/service_box_2.svg' %}" alt="icon"></div>
+                        <h3 class="box-title">Starting Of Vehicle</h3>
+                    </div>
+                    <div class="tab-btn">
+                        <div class="box-icon"><img src="{% static 'img/icon/service_box_3.svg' %}" alt="icon"></div>
+                        <h3 class="box-title">Road Sense</h3>
+                    </div>
+                    <div class="tab-btn">
+                        <div class="box-icon"><img src="{% static 'img/icon/service_box_4.svg' %}" alt="icon"></div>
+                        <h3 class="box-title">Vehicle Control</h3>
+                    </div>
+                    <div class="tab-btn">
+                        <div class="box-icon"><img src="{% static 'img/icon/service_box_5.svg' %}" alt="icon"></div>
+                        <h3 class="box-title">Shape Test</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9">
+                <div class="service-box-slide th-carousel" data-fade="true" data-slide-show="1" data-md-slide-show="1">
+                    <div>
+                        <div class="service-box">
+                            <div class="box-img"><img src="{% static 'img/service/service_box_1.jpg' %}" alt="Image"></div>
+                            <div class="box-content">
+                                <div class="content">
+                                    <h4 class="sec-title">During inspection the following things are expected to be
+                                        checked</h4>
+                                    <div class="checklist style2 mb-35">
+                                        <ul>
+                                            <li> <i class="fal fa-check-circle"></i> Tyres should be checked whether
+                                                they are in proper condition
+                                                or not</li>
+                                            <li> <i class="fal fa-check-circle"></i> Spare tyre should also be checked
+                                                accordingly</li>
+                                            <li> <i class="fal fa-check-circle"></i> Head lights, back lights,
+                                                indicators should be checked whether
+                                                they are working properly or not</li>
+                                            <li> <i class="fal fa-check-circle"></i> Engine oil level should be checked
+                                                through oil gauge/dipstick.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should also check
+                                                whether the vehicle has
+                                                sufficient fuel or not</li>
+                                        </ul>
+                                    </div>
+                                    <h6 class="sec-title">After inspection of vehicle, the applicant should sit in the
+                                        vehicle and is
+                                        expected to follow the cockpit drill procedure. In cockpit drill, the
+                                        following steps are required to be followed by the applicants</h6>
+                                    <div class="checklist style2 mb-35">
+                                        <ul>
+                                            <li> <i class="fal fa-check-circle"></i> Ensure that all the doors are
+                                                closed. If any of the door is open or
+                                                half closed, the applicant should close it properly.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should adjust seat as
+                                                per his/her convenience, if
+                                                required.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should adjust side
+                                                mirrors and back view
+                                                mirror of the vehicle according to his/her seat position</li>
+                                            <li> <i class="fal fa-check-circle"></i> After seat, steering and mirrors
+                                                adjustment, the applicant
+                                                should wear seat belt</li>
+                                            <li> <i class="fal fa-check-circle"></i> Before starting of vehicle, the
+                                                applicant should make
+                                                sure that the hand brake is applied properly.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="service-box">
+                            <div class="box-img"><img src="{% static 'img/service/service_box_2.jpg' %}" alt="Image"></div>
+                            <div class="box-content">
+                                <div class="content">
+                                    <h4 class="sec-title">Starting Of Vehicle</h4>
+                                    <div class="checklist style2 mb-35">
+                                        <ul>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should make sure the
+                                                gear is in neutral position.</li>
+                                            <li> <i class="fal fa-check-circle"></i> Clutch should be pressed and
+                                                checked properly prior to
+                                                switching on the ignition switch.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should then switch on
+                                                the ignition and start the
+                                                vehicle engine.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The ignition attempt must be
+                                                balanced and controlled. It
+                                                should neither be unnecessarily long nor too short</li>
+                                        </ul>
+                                    </div>
+                                    <h6 class="sec-title">Vehicle UN-Parking</h6>
+                                    <div class="checklist style2 mb-35">
+                                        <ul>
+                                            <li> <i class="fal fa-check-circle"></i> After starting the vehicle, the
+                                                applicant is required to reverse
+                                                the vehicle from parking space and bring it to driving lane.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should use proper
+                                                indicator while turning the
+                                                vehicle in reverse. For instance, if the applicant is turning the
+                                                vehicle to the left side in reverse, he/she should use left side
+                                                indicator</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant is expected to make
+                                                proper / appropriate use of
+                                                side/back mirror</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="service-box">
+                            <div class="box-img"><img src="{% static 'img/service/service_box_3.jpg' %}" alt="Image"></div>
+                            <div class="box-content">
+                                <div class="content">
+                                    <h4 class="sec-title">Road Sense</h4>
+                                    <div class="checklist style2 mb-35">
+                                        <ul>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should follow traffic
+                                                rules and drive as if he/she
+                                                is in real life traffic environment.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should observe all
+                                                traffic signs and rules.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should join road
+                                                after observing the traffic flow
+                                                and signals etc.</li>
+                                            <li> <i class="fal fa-check-circle"></i> Wrong/dangerous joining of road
+                                                would result in straight
+                                                disqualification.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should drive in one
+                                                lane. He/ She may change
+                                                lane afterproperly giving indicatorbefore turning</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should use indicators
+                                                properly and well in time
+                                                before taking any turn or changing lane</li>
+                                            <li> <i class="fal fa-check-circle"></i> At a roundabout, the applicant
+                                                should enter the roundabout
+                                                after observing the traffic patiently. He who is on the right has
+                                                the right of way in the roundabout. </li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should use proper
+                                                lane in the round about. For
+                                                instance, if the applicant intends to go straight, he/she should
+                                                use the left lane. If he /she intends to go to the right side, right
+                                                lane should be used.
+                                            </li>
+                                            <li> <i class="fal fa-check-circle"></i> He/she shall use the proper
+                                                indicators while entering / leaving
+                                                the roundabout</li>
+                                            <li> <i class="fal fa-check-circle"></i> Violating the right of way shall be
+                                                straight disqualification</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="service-box">
+                            <div class="box-img"><img src="{% static 'img/service/service_box_4.jpg' %}" alt="Image"></div>
+                            <div class="box-content">
+                                <div class="content">
+                                    <h4 class="sec-title">Vehicle Control</h4>
+                                    <div class="checklist style2 mb-35">
+                                        <ul>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should demonstrate
+                                                good control over the
+                                                vehicle.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should apply
+                                                accelerator, brake and clutch in
+                                                appropriate manner. No jerks or switching off the engine
+                                                should occur at any time.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant must show full
+                                                control over the steering.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant should handle the
+                                                steering with both hands.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant shall demonstrate a
+                                                straight reverse as asked by
+                                                the examiner in which the applicant must have full control over
+                                                the vehicle. Reverse should not be in zig zag manner</li>
+                                            <li> <i class="fal fa-check-circle"></i> Failure in straight reverse shall
+                                                be straight away
+                                                disqualification.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="service-box">
+                            <div class="box-img"><img src="{% static 'img/service/service_box_5.jpg' %}" alt="Image"></div>
+                            <div class="box-content">
+                                <div class="content">
+                                    <h4 class="sec-title">Shape Test</h4>
+                                    <div class="checklist style2 mb-35">
+                                        <ul>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant will be asked to
+                                                drive the vehicle forward and
+                                                backward in “L” shape. Time limit for “L” shape will be 03
+                                                minutes.</li>
+                                            <li> <i class="fal fa-check-circle"></i> The applicant will then be asked to
+                                                move to the parallel parking
+                                                test. In parallel parking test, the applicant shall demonstrate 02
+                                                types of parking i.e. first will be parallel parking and second will
+                                                be garage parking. Time limit for parallel will be 05 minutes.</li>
+                                            <li> <i class="fal fa-check-circle"></i> After “L” shape and parallel
+                                                parking, the applicant shall be
+                                                asked to go through the “?” shape test. Time limit for “?” shape
+                                                will be 03 minutes.
+                                            </li>
+                                            <li> <i class="fal fa-check-circle"></i> After “?” shape test, the applicant
+                                                shall be asked to go through
+                                                “S” shape test. Time limit for “S” shape will be 03 minutes.</li>
+                                            <li> <i class="fal fa-check-circle"></i> Touching any cone, crossing line,
+                                                exceeding time limit,
+                                                adjusting vehicle more than once shall be straight
+                                                disqualification.</li>
+                                            <li> <i class="fal fa-check-circle"></i> “L” shape test and parallel parking
+                                                test will be for all
+                                                M.CAR/JEEP/LTV/LTV-PSV applicants.</li>
+                                            <li> <i class="fal fa-check-circle"></i> “?” shape test will be only for
+                                                LTV/LTV-PSV applicants.</li>
+                                            <li> <i class="fal fa-check-circle"></i> “S” shape test will be only for
+                                                LTV-PSV applicants.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock contentBody %}

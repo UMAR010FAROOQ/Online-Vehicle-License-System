@@ -1,0 +1,92 @@
+{% extends 'authbase.html' %}
+{% load static %} 
+
+{% block title%} Login {% endblock %}
+
+
+
+{% block authBody %}
+        
+
+
+
+
+    <div class="preloader">
+        <button class="th-btn preloaderCls">Cancel Preloader</button>
+        <div class="preloader-inner"><span class="loader"></span></div>
+    </div>
+
+    <div class="space-bottom mt-5">
+        <div class="container">
+            <div class="bg-smoke rounded-20">
+                <div class="row gx-0">
+                    <div class="col-xl-5">
+                        <div class="contact-map d-flex justify-content-center align-items-center">
+                            <img src="{% static 'img/shape/car_2.png' %}" alt="" />
+                        </div>
+                    </div>
+                    <div class="col-xl-7">
+                        <div class="quote-form-box">
+                            {% for message in messages %}
+                            <div class="alert alert-danger text-center" role="alert">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                            <form action="{% url 'core:login' %}" method="POST" class="woocommerce-form-login">
+                                {% csrf_token %}
+                                <a href="{% url 'core:HomePage' %}" style="
+                      background-color: #0073e6;
+                      border-radius: 50%;
+                      padding: 10px;
+                    ">
+                                    <i style="color: white" class="fa-sharp fa-solid fa-house"></i>
+                                </a>
+                                <h3 class="form-title text-center">
+                                    <span class="text-theme">Login</span>
+                                </h3>
+                                <p class="form-text text-center">
+                                    Please enter your information to proceed
+                                </p>
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" name="user_name" required=""
+                                        placeholder="Username" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" name="password" required=""
+                                        placeholder="Password" />
+                                </div>
+                                <br>
+                                <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_PUBLIC_KEY }}"></div>
+                                <br>
+                                <div class="form-group d-flex justify-content-between">
+                                    <div class="custom-checkbox">
+                                        <input type="checkbox" id="remembermylogin" name="remember_me" />
+                                        <label for="remembermylogin">Remember Me</label>
+                                    </div>
+                                    <p class="mb-0">
+                                        <a class="text-reset" href="{% url 'core:password_reset' %}">Lost your password?</a>
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="th-btn">Login</button>
+                                    <p class="mt-3 text-center">
+                                        Do not have account?
+                                        <a class="text-reset" href="{% url 'core:user_registration' %}">
+                                            <b>Create Account</b></a>
+                                    </p>
+                                    <p class="mt-3 text-center">
+                                        Login with
+                                        <a class="text-reset" href="{% url 'social:begin' 'google-oauth2' %}"><b>Google</b></a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock authBody %}

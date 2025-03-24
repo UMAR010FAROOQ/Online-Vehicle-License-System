@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title%}| e-License {% endblock %}
+
+
+
+{% block contentBody %}
+        
+
+
+
+
+
+<div class="space-bottom mt-5">
+    <div class="container">
+        <div class="row gx-0">
+            <div class="col-xl-7">
+                <div class="quote-form-box">
+                    <form action="#" class="woocommerce-form-login">
+                        <h3 class="form-title text-center"><span class="text-theme">e-License</span> </h3>
+                        <p class="form-text text-center">Please enter your information to proceed</p>
+                        <div class="form-group"><label>CNIC</label>
+                            <input type="text" id="cnic" name="cnic" required="" class="form-control" placeholder="12345-1234567-1">
+                        </div>
+                        <div class="form-group"><label>License Number </label> <input type="text" class="form-control"
+                                required="" placeholder="Please Enter License Number"></div>
+                        <div class="form-group"><button type="submit" class="th-btn">Verify License</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xl-5">
+                <div class="contact-map d-flex justify-content-center align-items-center">
+                    <img src="{% static 'img/shape/verify_image.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock contentBody %}

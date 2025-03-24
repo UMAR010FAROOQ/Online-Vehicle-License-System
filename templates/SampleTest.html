@@ -1,0 +1,407 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title%}| Sample Test {% endblock %}
+
+
+
+{% block contentBody %}
+        
+
+<style>
+    .mcq-section {
+        height: 100vh;
+        background: #E6E6E6;
+    }
+
+    .start-screen,
+    .score-container {
+        position: absolute;
+        width: 100%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .score-container {
+        width: 450px;
+        height: 300px;
+        padding: 30px;
+        box-shadow: 0px 0px 20px rgba(186, 186, 186, 0.15);
+        border-radius: 10px;
+        background-color: var(--white-color);
+    }
+
+    button {
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    #start-button,
+    #restart {
+        font-size: 1.3em;
+        padding: 0.5em 1.8em;
+        border-radius: 0.2em;
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    #restart {
+        margin-top: 0.9em;
+    }
+
+    #display-container {
+        background-color: #ffffff;
+        padding: 3.1em 1.8em;
+        width: 80%;
+        max-width: 37.5em;
+        margin: 0 auto;
+        position: relative;
+        transform: translate(-50%, -50%);
+        top: 65%;
+        left: 20%;
+        border-radius: 0.6em;
+    }
+
+    .mcq-header {
+        margin-bottom: 1.8em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 0.6em;
+        border-bottom: 0.1em solid #c0bfd2;
+    }
+
+    .timer-div {
+        background-color: #e1f5fe;
+        width: 7.5em;
+        border-radius: 1.8em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.7em 1.8em;
+    }
+
+    .question {
+        margin-bottom: 1.25em;
+        font-weight: 600;
+    }
+
+    .option-div {
+        font-size: 0.9em;
+        width: 100%;
+        padding: 1em;
+        margin: 0.3em 0;
+        text-align: left;
+        outline: none;
+        background: transparent;
+        border: 1px solid #c0bfd2;
+        border-radius: 0.3em;
+    }
+
+    .option-div:disabled {
+        color: #000000;
+        cursor: not-allowed;
+    }
+
+    #next-button {
+        font-size: 1em;
+        margin-top: 1.5em;
+        background-color: #0073E6;
+        color: #ffffff;
+        padding: 0.7em 1.8em;
+        border-radius: 0.3em;
+        float: right;
+        box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .incorrect {
+        background-color: #ffdde0;
+        color: #d32f2f;
+        border-color: #d32f2f;
+    }
+
+    .correct {
+        background-color: #e7f6d5;
+        color: #689f38;
+        border-color: #689f38;
+    }
+
+    #user-score {
+        font-size: 1.5em;
+        color: #74757B;
+    }
+</style>
+
+
+
+<div class="breadcumb-wrapper" data-bg-src="{% static 'img/bg/breadcumb-bg.jpg' %}">
+    <div class="container">
+        <div class="breadcumb-content">
+            <h1 class="breadcumb-title">Sample Test</h1>
+            <ul class="breadcumb-menu">
+                <li><a href="{% url 'core:HomePage' %}">Home</a></li>
+                <li>Sample Test</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="mcq-section space d-flex justify-content-center align-items-center">
+    <div class="start-screen">
+        <button id="start-button">Start</button>
+    </div>
+    <div id="display-container">
+        <div class="mcq-header">
+            <div class="number-of-count">
+                <span class="number-of-question">1 of 3 questions</span>
+            </div>
+            <div class="timer-div">
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/time-and-date/stopwatch-icon.png"
+                    width="20px" />
+                <span class="time-left">10s</span>
+            </div>
+        </div>
+        <div id="container">
+            <!-- questions and options will be displayed here -->
+        </div>
+        <button id="next-button">Next</button>
+    </div>
+    <div class="score-container hide">
+        <div id="user-score">Demo Score</div>
+        <button id="restart">Restart</button>
+    </div>
+</div>
+
+
+<script>
+    //References
+    let timeLeft = document.querySelector(".time-left");
+    let quizContainer = document.getElementById("container");
+    let nextBtn = document.getElementById("next-button");
+    let countOfQuestion = document.querySelector(".number-of-question");
+    let displayContainer = document.getElementById("display-container");
+    let scoreContainer = document.querySelector(".score-container");
+    let restart = document.getElementById("restart");
+    let userScore = document.getElementById("user-score");
+    let startScreen = document.querySelector(".start-screen");
+    let startButton = document.getElementById("start-button");
+    let questionCount;
+    let scoreCount = 0;
+    let count = 11;
+    let countdown;
+
+    //Questions and Options array
+
+    const quizArray = [
+        {
+            id: "0",
+            question: "What is the maximum speed allowed when towing on the motorway?",
+            options: ["60 km/h", "40 km/h", "80 km/h", "100 km/h"],
+            correct: "40 km/h",
+        },
+        {
+            id: "1",
+            question: "Why Dippers are used?",
+            options: ["For Overtaking", "To Stop your Vehicle", "To show your presence", "None"],
+            correct: "To show your presence",
+        },
+        {
+            id: "2",
+            question: "Can you drive your vehicle in reverse on Motorway",
+            options: ["Yes", "No", "Don't Know", " "],
+            correct: "No",
+        },
+        {
+            id: "3",
+            question: "During driving at night high beam can not be used continuously?",
+            options: ["Yes", "No", "Don't Know", "Maybe"],
+            correct: "Yes",
+        },
+        {
+            id: "4",
+            question: "You are looking for a parking space.",
+            options: ["I can park on the left when driving in this direction", "I am not allowed to park on the left when driving in this direction", "If there is no space, I can also park briefly in the second row", "None of these"],
+            correct: "I am not allowed to park on the left when driving in this direction",
+        },
+        {
+            id: "5",
+            question: "According to the Law no body is allowed to drive until and unless his age is?",
+            options: ["Above 17 Year", "Above 18 Year", "Above 19 Year", "Above 20 Year"],
+            correct: "Above 18 Year",
+        }, {
+            id: "6",
+            question: "Isn't it legal to obey Warning Signs?",
+            options: ["Yes", "No", "Don't Know", " "],
+            correct: "No",
+        },
+        {
+            id: "7",
+            question: "Do You need a special Permit to transport Cattle?",
+            options: ["Yes", "No", "Don't Know", " "],
+            correct: "Yes",
+        },
+        {
+            id: "8",
+            question: "The first thing you should do before overtaking is?",
+            options: [" Sound your horn", "Increase your speed", "Make sure it is safe and the way is clear of oncoming traffic", "other"],
+            correct: "Make sure it is safe and the way is clear of oncoming traffic",
+        },
+        {
+            id: "9",
+            question: "Is it allowed to stop the vehicle ahead of stop line at signal?",
+            options: ["Yes", "No", "None of them", " "],
+            correct: "No",
+        },
+    ];
+
+    //Restart Quiz
+    restart.addEventListener("click", () => {
+        initial();
+        displayContainer.classList.remove("hide");
+        scoreContainer.classList.add("hide");
+    });
+
+    //Next Button
+    nextBtn.addEventListener(
+        "click",
+        (displayNext = () => {
+            //increment questionCount
+            questionCount += 1;
+            //if last question
+            if (questionCount == quizArray.length) {
+                //hide question container and display score
+                displayContainer.classList.add("hide");
+                scoreContainer.classList.remove("hide");
+                //user score
+                userScore.innerHTML =
+                    "Your score is " + scoreCount + " out of " + questionCount;
+            } else {
+                //display questionCount
+                countOfQuestion.innerHTML =
+                    questionCount + 1 + " of " + quizArray.length + " Question";
+                //display quiz
+                quizDisplay(questionCount);
+                count = 11;
+                clearInterval(countdown);
+                timerDisplay();
+            }
+        })
+    );
+
+    //Timer
+    const timerDisplay = () => {
+        countdown = setInterval(() => {
+            count--;
+            timeLeft.innerHTML = `${count}s`;
+            if (count == 0) {
+                clearInterval(countdown);
+                displayNext();
+            }
+        }, 1000);
+    };
+
+    //Display quiz
+    const quizDisplay = (questionCount) => {
+        let quizCards = document.querySelectorAll(".container-mid");
+        //Hide other cards
+        quizCards.forEach((card) => {
+            card.classList.add("hide");
+        });
+        //display current question card
+        quizCards[questionCount].classList.remove("hide");
+    };
+
+    //Quiz Creation
+    function quizCreator() {
+        //randomly sort questions
+        quizArray.sort(() => Math.random() - 0.5);
+        //generate quiz
+        for (let i of quizArray) {
+            //randomly sort options
+            i.options.sort(() => Math.random() - 0.5);
+            //quiz card creation
+            let div = document.createElement("div");
+            div.classList.add("container-mid", "hide");
+            //question number
+            countOfQuestion.innerHTML = 1 + " of " + quizArray.length + " Question";
+            //question
+            let question_DIV = document.createElement("p");
+            question_DIV.classList.add("question");
+            question_DIV.innerHTML = i.question;
+            div.appendChild(question_DIV);
+            //options
+            div.innerHTML += `
+    <button class="option-div" onclick="checker(this)">${i.options[0]}</button>
+     <button class="option-div" onclick="checker(this)">${i.options[1]}</button>
+      <button class="option-div" onclick="checker(this)">${i.options[2]}</button>
+       <button class="option-div" onclick="checker(this)">${i.options[3]}</button>
+    `;
+            quizContainer.appendChild(div);
+        }
+    }
+
+    //Checker Function to check if option is correct or not
+    function checker(userOption) {
+        let userSolution = userOption.innerText;
+        let question =
+            document.getElementsByClassName("container-mid")[questionCount];
+        let options = question.querySelectorAll(".option-div");
+
+        //if user clicked answer == correct option stored in object
+        if (userSolution === quizArray[questionCount].correct) {
+            userOption.classList.add("correct");
+            scoreCount++;
+        } else {
+            userOption.classList.add("incorrect");
+            //For marking the correct option
+            options.forEach((element) => {
+                if (element.innerText == quizArray[questionCount].correct) {
+                    element.classList.add("correct");
+                }
+            });
+        }
+
+        //clear interval(stop timer)
+        clearInterval(countdown);
+        //disable all options
+        options.forEach((element) => {
+            element.disabled = true;
+        });
+    }
+
+    //initial setup
+    function initial() {
+        quizContainer.innerHTML = "";
+        questionCount = 0;
+        scoreCount = 0;
+        count = 11;
+        clearInterval(countdown);
+        timerDisplay();
+        quizCreator();
+        quizDisplay(questionCount);
+    }
+
+    //when user click on start button
+    startButton.addEventListener("click", () => {
+        startScreen.classList.add("hide");
+        displayContainer.classList.remove("hide");
+        initial();
+    });
+
+    //hide quiz and display start screen
+    window.onload = () => {
+        startScreen.classList.remove("hide");
+        displayContainer.classList.add("hide");
+    };
+</script>
+
+
+
+{% endblock contentBody %}

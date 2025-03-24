@@ -1,0 +1,259 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Online Driving License System {% block title%}{% endblock %}</title>
+    <meta name="author" content="Dride">
+    <meta name="description" content="Dride - Driving School & Courses HTML Template">
+    <meta name="keywords" content="Dride - Driving School & Courses HTML Template">
+    <meta name="robots" content="INDEX,FOLLOW">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&amp;family=Roboto:wght@100;300;400;500;700;900&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+</head>
+
+<body>
+    <!-- <div class="preloader"><button class="th-btn preloaderCls">Cancel Preloader</button>
+        <div class="preloader-inner"><span class="loader"></span></div>
+    </div> -->
+
+
+
+    <div class="th-menu-wrapper">
+        <div class="th-menu-area text-center"><button class="th-menu-toggle"><i class="fal fa-times"></i></button>
+            <div class="mobile-logo"><a href="home-driving-school.html"><img src="{% static 'img/logo.svg' %}"
+                        alt="Dride"></a>
+            </div>
+            <div class="th-mobile-menu">
+                <ul>
+                    <li class="menu-item-has-children"><a href="home-driving-school.html">Home</a>
+                        <ul class="sub-menu">
+                            <li><a href="home-driving-school.html">Driving School</a></li>
+                            <li><a href="home-driving-courses.html">Driving Courses</a></li>
+                            <li><a href="home-driving-guidelines.html">Driving Guidelines</a></li>
+                            <li><a href="home-driving-training.html">Car Driving Training</a></li>
+                            <li><a href="home-driving-certificate.html">Home Driving Certificate</a></li>
+                            <li><a href="home-external-driving.html">External Driving Training</a></li>
+                            <li><a href="home-driving-safety.html">Home Driving Safety</a></li>
+                            <li><a href="home-driving-academy.html">Home Driving Academy</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="menu-item-has-children"><a href="#">Courses</a>
+                        <ul class="sub-menu">
+                            <li><a href="course.html">Courses</a></li>
+                            <li><a href="course-details.html">Course Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children"><a href="#">Pages</a>
+                        <ul class="sub-menu">
+                            <li class="menu-item-has-children"><a href="#">Shop</a>
+                                <ul class="sub-menu">
+                                    <li><a href="shop.html">Shop</a></li>
+                                    <li><a href="shop-details.html">Shop Details</a></li>
+                                    <li><a href="cart.html">Cart Page</a></li>
+                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="wishlist.html">Wishlist</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="service.html">Service</a></li>
+                            <li><a href="service-details.html">Service Details</a></li>
+                            <li><a href="team.html">Team</a></li>
+                            <li><a href="team-details.html">Team Details</a></li>
+                            <li><a href="project.html">Project</a></li>
+                            <li><a href="project-details.html">Project Details</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="faq.html">Faq Page</a></li>
+                            <li><a href="error.html">Error Page</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children"><a href="#">Blog</a>
+                        <ul class="sub-menu">
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="blog-details.html">Blog Details</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <header class="th-header header-layout6">
+        <div class="sticky-wrapper">
+            <div class="menu-area">
+                <div class="logo-bg"></div>
+                <div class="container th-container">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto">
+                            <div class="header-logo"><a href="home-driving-school.html"><img
+                                        src="{% static 'img/logo.svg' %}" alt="Dride"></a></div>
+                        </div>
+                        <div class="col-auto">
+                            <nav class="main-menu d-none d-lg-inline-block">
+                                <ul>
+                                    <li><a href="{% url 'core:HomePage' %}">Home</a></li>
+                                    <li><a href="{% url 'core:LearningMaterialPage' %}">Learning Material</a></li>
+                                    <li><a href="{% url 'core:SampleTestPage' %}">Sample Test</a></li>
+                                    {% comment %} <li><a href="{% url 'core:FeeStructurePage' %}">Fee Structure</a></li> {% endcomment %}
+                                    <li><a href="{% url 'core:VerifyLicensePage' %}">Verify License</a></li>
+                                    <li><a href="{% url 'core:TrackApplicationPage' %}">Track Application</a></li>
+                                    <li class="menu-item-has-children"><a href="#">License</a>
+                                        <ul class="sub-menu">
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <b>Learner License</b>
+                                                    <li><a href="{% url 'core:LearnerApplyPage' %}">Apply</a></li>
+                                                    <li><a href="blog-details.html">Renew</a></li>
+                                                    <li><a href="{% url 'core:LearnerApplicationPage' %}">Application</a></li>
+                                                </div>
+                                                {% comment %} <div>
+                                                    <b>Regular License</b>
+                                                    <li><a href="blog.html">Renewal</a></li>
+                                                    <li><a href="blog-details.html">Application</a></li>
+                                                </div> {% endcomment %} 
+                                            </div>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav><button type="button" class="th-menu-toggle d-block d-lg-none"><i
+                                    class="far fa-bars"></i></button>
+                        </div>
+                        <div class="col-auto d-none d-xl-block">
+
+                            <div class="header-button">
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'core:logout' %}" class="th-btn btn-fw"
+                                    style="padding: 21px 30px;">Logout</a>
+                                    <a href="{% url 'core:change_password' %}"><i class="fa-solid fa-user"></i></a>
+                                {% else %}
+                                <a href="{% url 'core:login' %}" class="th-btn btn-fw"
+                                    style="padding: 21px 30px;">Login</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {% block contentBody %}
+
+    {% endblock contentBody %}
+  
+
+
+    <footer class="footer-wrapper footer-layout1" data-bg-src="{% static 'img/bg/footer_bg_1.png' %}">
+        <div class="widget-area">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget footer-widget">
+                            <div class="th-widget-about">
+                                <div class="about-logo"><a href="home-driving-school.html"><img
+                                            src="{% static 'img/logo-footer.png' %}" alt="Dride"></a></div>
+                                <p class="about-text"> Welcome to the future of licensing! The Punjab Government brings
+                                    you the convenience of obtaining your driving license online. Skip the lines, save
+                                    time, and apply from
+                                    anywhere with our user-friendly digital platform.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-auto">
+                        <div class="widget widget_nav_menu footer-widget">
+                            <h3 class="widget_title">Our Pages</h3>
+                            <div class="menu-all-pages-container">
+                                <ul class="menu">
+                                    <li><a href="{% url 'core:HomePage' %}">Home</a></li>
+                                    <li><a href="{% url 'core:LearningMaterialPage' %}">Learning Material</a></li>
+                                    <li><a href="{% url 'core:SampleTestPage' %}">Sample Test</a></li>
+                                    <li><a href="">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-auto">
+                        <div class="widget footer-widget">
+                            <h3 class="widget_title">Contact Us</h3>
+                            <div class="th-widget-contact">
+                                <div class="info-box">
+                                    <div class="info-box_icon"><i class="fas fa-phone"></i></div>
+                                    <p class="info-box_text"><a href="tel:+999999" class="info-box_link">999999</a> <a
+                                            href="tel:+999999" class="info-box_link">999999</a></p>
+                                </div>
+                                <div class="info-box">
+                                    <div class="info-box_icon"><i class="fas fa-envelope"></i></div>
+                                    <p class="info-box_text"><a href="mailto:Info@gmail.com"
+                                            class="info-box_link">Info@gmail.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-auto">
+                        <div class="widget newsletter-widget footer-widget">
+                            <h3 class="widget_title">Newsletter</h3>
+                            <p class="footer-text">Sign up to get update news about us</p>
+                            <form class="newsletter-form"><input class="form-control" type="email"
+                                    placeholder="Enter Email" required=""> <button type="submit"
+                                    class="th-btn style3">Subscribe</button></form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-wrap">
+            <div class="container text-center">
+                <p class="copyright-text">Copyright <i class="fal fa-copyright"></i> 2024 <a
+                        href="{% url 'core:HomePage' %}">ODLS</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <div class="scroll-top"><svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+                style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;">
+            </path>
+        </svg></div>
+
+
+
+
+    <script src="{% static 'js/vendor/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/app.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+    
+  
+
+
+</body>
+
+</html>

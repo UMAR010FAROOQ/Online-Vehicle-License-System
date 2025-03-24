@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title%}| Track License {% endblock %}
+
+
+
+{% block contentBody %}
+
+
+<div class="space-bottom mt-5">
+    <div class="container">
+        <div class="row gx-0">
+            <div class="col-lg-12">
+                <div class="quote-form-box">
+                    <div class="woocommerce-form-login">
+                        <p class="form-text text-start">Fee Structure</p>
+                        <h3 class="form-title text-start"><span class="text-theme">Regular License</span> </h3>
+                        <p class="form-text text-start">The fee are applicable for one year</p>
+                        <div class="table-responsive">
+                            <table class="table table-striped nowrap" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Test Fee</th>
+                                        <th scope="col">Fee After Passing Test</th>
+                                        <th scope="col">Courier Fee</th>
+                                        <th scope="col">Total Fee </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for fee in feeStr %}
+                                    <tr>
+                                        <td>{{ fee.category }}</td>
+                                        <td>{{ fee.testFee }}</td>
+                                        <td>{{ fee.afterPassingTest }}</td>
+                                        <td>{{ fee.courierFee }}</td>
+                                        <td>{{ fee.totalFee }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+
+{% endblock contentBody %}

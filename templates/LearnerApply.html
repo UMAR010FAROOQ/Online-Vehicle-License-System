@@ -1,0 +1,409 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}| Track License {% endblock %}
+
+
+
+{% block contentBody %}
+
+
+
+<style>
+    label input {
+        display: none
+    }
+
+    label {
+        padding: 1rem 1.5rem;
+        background: #0073E6;
+        box-shadow: 2px 2px 2px #aaa;
+        font: 1em Arial, sans-serif;
+        color: #fff;
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+
+    label:active {
+        top: 2px;
+        box-shadow: none;
+    }
+
+
+    .avatar-upload {
+    position: relative;
+    max-width: 100%;
+    margin: 10px auto;
+}
+
+.avatar-upload .avatar-edit {
+    position: absolute;
+    right: 12px;
+    z-index: 1;
+    top: 10px;
+}
+
+.avatar-upload .avatar-edit input {
+    display: none;
+}
+
+.avatar-upload .avatar-edit input + label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #0073e6;
+    border: 1px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all 0.2s ease-in-out;
+}
+
+.avatar-upload .avatar-edit input + label:hover {
+    background: #000000;
+    border-color: #d6d6d6;
+}
+
+.avatar-upload .avatar-edit input + label:after {
+    content: "";
+    background-image: url('static/img/shape/upload-solid.png');
+    font-family: 'FontAwesome';
+    color: #757575;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+}
+
+.avatar-upload .avatar-preview {
+    width: auto;
+    height: 249px;
+    position: relative;
+    border: 6px solid #F8F8F8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-upload .avatar-preview > div {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+</style>
+
+<div class="space-bottom mt-5">
+    <div class="container">
+        <div class="row gx-0">
+            <div class="col-xl-12">
+                <div class="quote-form-box">
+                    <form method="post" action="{% url 'core:LearnerApplyPage' %}" enctype="multipart/form-data" class="woocommerce-form-login">
+                        {% csrf_token %}
+                        <p class="form-text text-left">New Learner</p>
+                        <h3 class="form-title text-left"><span class="text-theme">License Application</span> </h3>
+
+                        <div class="row mt-4">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" id="cnic" name="cnic" required="" class="form-control"
+                                        placeholder="12345-1234567-1">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group"><input type="text" name="fullName" class="form-control"  required=""
+                                        placeholder="Full Name"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group"> <input type="text" name="fatherName" class="form-control" required=""
+                                        placeholder="Father Name"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group"> <input type="text" class="form-control" id="dob" name="dob"
+                                        required="" placeholder="DOB(yyyy-mm-dd)"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group"> <input type="number" class="form-control" name="phoneNumber"
+                                        required="" placeholder="Phone Number"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group"> <input type="number" class="form-control" name="height"
+                                        required="" placeholder="Height"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" name="gender" aria-label="Default select example" required>
+                                    <option selected>Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="transgender">Transgender</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" name="citizenType" aria-label="Default select example" required>
+                                    <option selected>Select Citizen Type</option>
+                                    <option value="1">GOV. EMPLOYEE</option>
+                                    <option value="1">FARMER</option>
+                                    <option value="1">BUSSINESS MAN</option>
+                                    <option value="1">PRIVATE EMPLOYEE</option>
+                                    <option value="1">CIVILIAN</option>
+                                    <option value="1">STUDENT</option>
+                                    <option value="1">ARMY MAN</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" name="vehicleType" aria-label="Default select example" required>
+                                    <option selected>Select Vehicle Type</option>
+                                    <option value="1">Automatic</option>
+                                    <option value="1">Manual</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" name="nationality" aria-label="Default select example" required>
+                                    <option selected>Select Nationality</option>
+                                    <option value="1">Pakistani</option>
+                                    <option value="1">Foreigner</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" name="bloodGroup" aria-label="Default select example" required>
+                                    <option selected>Select Blood Group</option>
+                                    <option value="1">A+</option>
+                                    <option value="2">AB-</option>
+                                    <option value="3">B+</option>
+                                    <option value="4">O+</option>
+                                    <option value="5">O-</option>
+                                    <option value="6">AB+</option>
+                                    <option value="54">B-</option>
+                                    <option value="55">A-</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" name="disability" aria-label="Default select example" required>
+                                    <option selected>Any Disability</option>
+                                    <option value="1">Yes</option>
+                                    <option value="1">No</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" name="category" aria-label="Default select example" required>
+                                    <option selected>Select Category</option>
+                                    <option value="1">M/CYCLE</option>
+                                    <option value="1">M/CAR/JEEP</option>
+                                    <option value="1">TR.AGRI</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h6>Permanent Address</h6>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" name="permanentProvince" aria-label="Default select example" required>
+                                    <option selected>Select Province</option>
+                                    <option value="1">Punjab</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" name="permanentDistrict" aria-label="Default select example" required>
+                                    <option selected>Select District</option>
+                                    <option value="30101">BAHAWALNAGAR</option>
+                                    <option value="30102">BAHAWALPUR</option>
+                                    <option value="30103">RAHIM YAR KHAN</option>
+                                    <option value="30201">D G KHAN</option>
+                                    <option value="30202">LAYYAH</option>
+                                    <option value="30203">MUZAFFARGARH</option>
+                                    <option value="30204">RAJANPUR</option>
+                                    <option value="30301">FAISALABAD</option>
+                                    <option value="30302">JHANG</option>
+                                    <option value="30303">TOBA TEK SINGH</option>
+                                    <option value="30304">CHINIOT</option>
+                                    <option value="30401">GUJRANWALA</option>
+                                    <option value="30402">GUJRAT</option>
+                                    <option value="30403">SIALKOT</option>
+                                    <option value="30404">HAFIZABAD</option>
+                                    <option value="30405">MANDI BAHAUDDIN</option>
+                                    <option value="30406">NAROWAL</option>
+                                    <option value="30501">KASUR</option>
+                                    <option value="30502">LAHORE</option>
+                                    <option value="30503">OKARA</option>
+                                    <option value="30504">SHEIKHUPURA</option>
+                                    <option value="30505">NANKANA SAHIB</option>
+                                    <option value="30601">MULTAN</option>
+                                    <option value="30602">SAHIWAL</option>
+                                    <option value="30603">VEHARI</option>
+                                    <option value="30604">KHANEWAL</option>
+                                    <option value="30605">PAKPATTAN</option>
+                                    <option value="30606">LODHRAN</option>
+                                    <option value="30701">ATTOCK</option>
+                                    <option value="30702">JHELUM</option>
+                                    <option value="30703">RAWALPINDI</option>
+                                    <option value="30704">CHAKWAL</option>
+                                    <option value="30801">BHAKHAR</option>
+                                    <option value="30802">KHUSHAB</option>
+                                    <option value="30803">MIANWALI</option>
+                                    <option value="30804">SARGODHA</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group"> <input type="text" class="form-control" name="permanentAddress" required=""
+                                        placeholder="Enter Permanent Address"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h6>Current Address</h6>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" name="currentProvince" aria-label="Default select example" required>
+                                    <option selected>Select Province</option>
+                                    <option value="1">Punjab</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <select class="form-select" name="currentDistrict" aria-label="Default select example" required>
+                                    <option selected>Select District</option>
+                                    <option value="30101">BAHAWALNAGAR</option>
+                                    <option value="30102">BAHAWALPUR</option>
+                                    <option value="30103">RAHIM YAR KHAN</option>
+                                    <option value="30201">D G KHAN</option>
+                                    <option value="30202">LAYYAH</option>
+                                    <option value="30203">MUZAFFARGARH</option>
+                                    <option value="30204">RAJANPUR</option>
+                                    <option value="30301">FAISALABAD</option>
+                                    <option value="30302">JHANG</option>
+                                    <option value="30303">TOBA TEK SINGH</option>
+                                    <option value="30304">CHINIOT</option>
+                                    <option value="30401">GUJRANWALA</option>
+                                    <option value="30402">GUJRAT</option>
+                                    <option value="30403">SIALKOT</option>
+                                    <option value="30404">HAFIZABAD</option>
+                                    <option value="30405">MANDI BAHAUDDIN</option>
+                                    <option value="30406">NAROWAL</option>
+                                    <option value="30501">KASUR</option>
+                                    <option value="30502">LAHORE</option>
+                                    <option value="30503">OKARA</option>
+                                    <option value="30504">SHEIKHUPURA</option>
+                                    <option value="30505">NANKANA SAHIB</option>
+                                    <option value="30601">MULTAN</option>
+                                    <option value="30602">SAHIWAL</option>
+                                    <option value="30603">VEHARI</option>
+                                    <option value="30604">KHANEWAL</option>
+                                    <option value="30605">PAKPATTAN</option>
+                                    <option value="30606">LODHRAN</option>
+                                    <option value="30701">ATTOCK</option>
+                                    <option value="30702">JHELUM</option>
+                                    <option value="30703">RAWALPINDI</option>
+                                    <option value="30704">CHAKWAL</option>
+                                    <option value="30801">BHAKHAR</option>
+                                    <option value="30802">KHUSHAB</option>
+                                    <option value="30803">MIANWALI</option>
+                                    <option value="30804">SARGODHA</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group"> <input type="text" class="form-control" name="currentAddress" required=""
+                                        placeholder="Enter Current Address"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h6>Upload Your Documents</h6>
+                            <p class="box-info">Crop Image properly and size should be only 500 Kb maximum.</p>
+                            <div class="course-block-area">
+                                <div class="course-block">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="box-img"><img src="{% static 'img/shape/scan_or_upload.png' %}"
+                                                    alt="image"></div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <label>Upload image
+                                                <input name="userProfileImg" required="" type="file" accept="image/*" />
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="box-content">
+                                        <div class="course-info-wrap">
+                                            <div class="course-info">
+                                                <div class="box-icon"><img
+                                                        src="{% static 'img/shape/side_profile.svg' %}" alt="icon">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="box-title">Avoid Side Profile</h6>
+                                                    <p class="box-info">Refrain from showing your face from the side, as
+                                                        it may impede the detection process.</p>
+                                                </div>
+                                            </div>
+                                            <div class="course-info">
+                                                <div class="box-icon"><img
+                                                        src="{% static 'img/shape/straight_face.svg' %}" alt="icon">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="box-title">Maintain a Straight Face</h6>
+                                                    <p class="box-info">Keep your face straight to enhance detection
+                                                        reliability.</p>
+                                                </div>
+                                            </div>
+                                            <div class="course-info">
+                                                <div class="box-icon"><img src="{% static 'img/shape/no_mask.svg' %}"
+                                                        alt="icon"></div>
+                                                <div class="media-body">
+                                                    <h6 class="box-title">No Masks Please</h6>
+                                                    <p class="box-info">Ensure a visible face without masks for
+                                                        effective recognition processes.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <h6>Upload CNIC <small>(Front / Back) Image </small></h6>
+                            <!-- First Image Upload -->
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                        <input type="file" name="IDfrontSide" id="imageUpload1" required="" accept=".png, .jpg, .jpeg" />
+                                        <label for="imageUpload1"></label>
+                                    </div>
+                                    <div class="avatar-preview">
+                                        <div id="imagePreview1" style="background-image: url('static/img/shape/front.jpg');"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Second Image Upload -->
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                        <input type="file" name="IDbackSide" id="imageUpload2" required="" accept=".png, .jpg, .jpeg" />
+                                        <label for="imageUpload2"></label>
+                                    </div>
+                                    <div class="avatar-preview">
+                                        <div id="imagePreview2" style="background-image: url('static/img/shape/back.jpg');"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group text-end mt-5"><button type="submit" class="th-btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock contentBody %}
